@@ -1,21 +1,19 @@
-import { useState, useRef } from 'react'
+import { forwardRef } from 'react'
 
-export default function SimpleForm() {
-  const [name, setName] = useState('')
-  const nameInput = useRef()
-
-  function handleClick() {
-    setName(nameInput.current.value)
-  }
-
+const SimpleForm = forwardRef(function SimpleForm(
+  { name, onButtonClick },
+  ref
+) {
   return (
     <form>
       <h2>Welcome {name}</h2>
       <label htmlFor='name'>Type in your name: </label>
-      <input ref={nameInput} type='text' id='name' name='name'></input>
-      <button type='button' onClick={handleClick}>
+      <input ref={ref} type='text' id='name' name='name'></input>
+      <button type='button' onClick={onButtonClick}>
         Click on me
       </button>
     </form>
   )
-}
+})
+
+export default SimpleForm
